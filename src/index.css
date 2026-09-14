@@ -1,0 +1,50 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./tailwind-theme.css";
+@import "./typography.css";
+
+/* 本地字体声明（离线可用） */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Noto Sans SC';
+  src: url('/fonts/NotoSansSC.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* 全局字体 */
+body {
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* 隐藏右下角平台水印 / 妙搭 / 豆包 浮层标识 */
+body > div[style*="fixed"][style*="bottom"][style*="right"],
+body > iframe[style*="fixed"][style*="bottom"][style*="right"],
+body > div[class*="watermark"],
+body > div[class*="Watermark"],
+body > div[class*="miaoda"],
+body > div[class*="doubao"],
+body > div[class*="powered-by"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* 兜底：隐藏所有 position:fixed 且位于右下角的非业务浮层（不含页面自身元素） */
+body > [style*="position: fixed"][style*="bottom"][style*="right"] {
+  display: none !important;
+}
+
+/* 隐藏包含妙搭 / 豆包 / Doubao / Miaoda 文案的悬浮按钮 */
+body > div:has(> button:is([aria-label*="妙搭"], [aria-label*="豆包"], [aria-label*="Doubao"], [aria-label*="Miaoda"], [title*="妙搭"], [title*="豆包"])) {
+  display: none !important;
+}
